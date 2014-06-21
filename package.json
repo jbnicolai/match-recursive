@@ -23,10 +23,10 @@
     "url": "https://github.com/jbnicolai/match-recursive/issues"
   },
   "devDependencies": {
+    "chai": "^1.9.1",
     "gulp": "^3.5.2",
-    "gulp-mocha": "^0.4.1",
-    "gulp-jshint": "^1.4.0"
+    "gulp-jshint": "^1.4.0",
+    "gulp-mocha": "^0.4.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
