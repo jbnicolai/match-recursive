@@ -3,6 +3,10 @@
 
 Heavily inspired by [Steven Leviathan](http://blog.stevenlevithan.com/about)'s [article](http://blog.stevenlevithan.com/archives/javascript-match-nested).
 
+Ever wanted to match all contents between braces in a string, only to run into trouble with unmatched braces? Here's the solution!
+
+Each [balanced, so this ']' bracked is ignored] subgroup will be matched recursively, ((2 + 2)\*2)^2 will also match the outer group '(2 + 2)\*2'. A second invokation will match the inner grop '2+2'.
+
 ```
 npm install match-recursive
 ```
