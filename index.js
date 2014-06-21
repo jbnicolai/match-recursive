@@ -16,14 +16,13 @@
 
 module.exports = (function () {
   var formatParts = /^([\S\s]+?)\.\.\.([\S\s]+)/,
-    metaChar = /[-[\]{}()*+?.\\^$|,]/g,
-    escape = function (str) {
-      return str.replace(metaChar, "\\$&");
-    };
+    metaChar = /[-[\]{}()*+?.\\^$|,]/g;
 
-  return function (str, format) {
-    var p = formatParts.exec(format);
+  function escape (str) {
+    return str.replace(metaChar, "\\$&");
+  }
 
+  function validateParts(p) {
     if (!p) {
       throw new Error("format must include start and end tokens separated by '...'");
     }
@@ -31,6 +30,11 @@ module.exports = (function () {
     if (p[1] === p[2]) {
       throw new Error("start and end format tokens cannot be identical");
     }
+  }
+
+  return function (str, format) {
+    var p = formatParts.exec(format);
+    validateParts(p);
 
     var opener = p[1],
       closer = p[2],
