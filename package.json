@@ -1,6 +1,6 @@
 {
   "name": "match-recursive",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Recursive regex matching for matching nested constructs",
   "main": "index.js",
   "scripts": {
