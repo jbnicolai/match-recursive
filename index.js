@@ -23,27 +23,35 @@ module.exports = (function () {
 
   return function (str, format) {
     var p = formatParts.exec(format);
-    if (!p) throw new Error("format must include start and end tokens separated by '...'");
-    if (p[1] == p[2]) throw new Error("start and end format tokens cannot be identical");
+
+    if (!p) {
+      throw new Error("format must include start and end tokens separated by '...'");
+    }
+
+    if (p[1] === p[2]) {
+      throw new Error("start and end format tokens cannot be identical");
+    }
 
     var opener = p[1],
       closer = p[2],
       /* Use an optimized regex when opener and closer are one character each */
-      iterator = new RegExp(format.length == 5 ? "["+escape(opener+closer)+"]" : escape(opener)+"|"+escape(closer), "g"),
+      iterator = new RegExp(format.length === 5 ? "["+escape(opener+closer)+"]" : escape(opener)+"|"+escape(closer), "g"),
       results = [],
       openTokens, matchStartIndex, match;
 
     do {
       openTokens = 0;
       while (match = iterator.exec(str)) {
-        if (match[0] == opener) {
-          if (!openTokens)
+        if (match[0] === opener) {
+          if (!openTokens) {
             matchStartIndex = iterator.lastIndex;
+          }
           openTokens++;
         } else if (openTokens) {
           openTokens--;
-          if (!openTokens)
+          if (!openTokens) {
             results.push(str.slice(matchStartIndex, match.index));
+          }
         }
       }
     } while (openTokens && (iterator.lastIndex = matchStartIndex));
